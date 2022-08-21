@@ -1,8 +1,10 @@
+LICENSE
 README.md
 pyproject.toml
 setup.cfg
 src/bayesianroc/BayesianROC.py
 src/bayesianroc/Test_Binary_Chance.py
+src/bayesianroc/Test_Binary_Chance2.py
 src/bayesianroc/__init__.py
 src/bayesianroc.egg-info/PKG-INFO
 src/bayesianroc.egg-info/SOURCES.txt

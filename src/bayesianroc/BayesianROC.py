@@ -70,15 +70,23 @@ class BayesianROC(DeepROC):
         returnValues     = self.getGroupForAUCi(groupIndex, forFolds)
         groupByOtherAxis = returnValues[3]
         if self.groupAxis == 'FPR':
-            group = dict(x1=self.groups[groupIndex][0],
-                         x2=self.groups[groupIndex][1],
-                         y1=groupByOtherAxis[0],
-                         y2=groupByOtherAxis[1])
+            if groupIndex == -1:  # whole ROC curve
+                group = dict(x1=0, x2=1, y1=0, y2=1)  # whole ROC curve
+            else:
+                group = dict(x1=self.groups[groupIndex][0],
+                             x2=self.groups[groupIndex][1],
+                             y1=groupByOtherAxis[0],
+                             y2=groupByOtherAxis[1])
+            #endif
         elif self.groupAxis == 'TPR':
-            group = dict(y1=self.groups[groupIndex][0],
-                         y2=self.groups[groupIndex][1],
-                         x1=groupByOtherAxis[0],
-                         x2=groupByOtherAxis[1])
+            if groupIndex == -1:  # whole ROC curve
+                group = dict(x1=0, x2=1, y1=0, y2=1)  # whole ROC curve
+            else:
+                group = dict(y1=self.groups[groupIndex][0],
+                             y2=self.groups[groupIndex][1],
+                             x1=groupByOtherAxis[0],
+                             x2=groupByOtherAxis[1])
+            #endif
         else:
             SystemError(f'This function has not been implemented yet for groupAxis=={self.groupAxis}.')
             group = None
